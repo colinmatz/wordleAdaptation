@@ -4,9 +4,7 @@ import os
 from Funcs import *
 
 gameState = 1
-greenColor = "\033[92m"
-yellowColor = "\033[33m"
-whiteColor = "\033[37m"
+runTurn = 1
 charsList = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 guessOne = []
 guessTwo = []
@@ -24,8 +22,7 @@ wordChoices = fileContents.split()
 
 numberWords = len(wordChoices)
 
-#chosenWord = wordChoices[random.randint(0, numberWords)]
-chosenWord = "forma"
+chosenWord = wordChoices[random.randint(0, numberWords)]
 
 # This splits the chosen word into a list of characters
 charList = list(chosenWord)
@@ -36,7 +33,6 @@ while (gameState == 1):
 
     # Prints title page
     clearTerm()
-    print(charsLeft)
     print("\n")
     print ("------------------------------------------------------------------------")
     print ("|                                                                      |")
@@ -59,91 +55,159 @@ while (gameState == 1):
         printBoardOne()
 
         # ------------------
+        while runTurn:
+            userInput = input("Guess One: Enter your 5 letter word guess: ").lower()
 
-        userInput = input("Enter your 5 letter word guess: ").lower()
+            clearTerm()
 
-        clearTerm()
+            guessOne = list(userInput)
 
-        guessOne = list(userInput)
-
-        checkLetters(guessOne, userInput, wordChoices, charList)
-
-        print(guessOne)
+            if checkLetters(guessOne, userInput, wordChoices, charList):
+                continue
+            else:
+                runTurn = 0
 
         printBoardTwo(guessOne)
 
+        if checkForWin(userInput, chosenWord):
+            printWin(charList)
+            gameState = 0
+            continue
+
+        runTurn = 1
+
         # ------------------
+        while runTurn:
+            userInputTwo = input("Guess Two: Enter your 5 letter word guess: ").lower()
 
-        userInputTwo = input("Enter your 5 letter word guess: ").lower()
+            clearTerm()
 
-        clearTerm()
+            guessTwo = list(userInputTwo)
 
-        guessTwo = list(userInputTwo)
-
-        checkLetters(guessTwo, userInputTwo, wordChoices, charList)
+            if checkLetters(guessTwo, userInputTwo, wordChoices, charList):
+                continue
+            else:
+                runTurn = 0
 
         printBoardThree(guessOne, guessTwo)
 
+        checkForWin(userInput, chosenWord)
+
+        if checkForWin(userInputTwo, chosenWord):
+            printWin(charList)
+            gameState = 0
+            continue
+
+        runTurn = 1
+
         # ------------------
 
-        userInputThree = input("Enter your 5 letter word guess: ").lower()
+        while runTurn:
 
-        clearTerm()
+            userInputThree = input("Guess Three: Enter your 5 letter word guess: ").lower()
 
-        guessThree = list(userInputThree)
+            clearTerm()
 
-        checkLetters(guessThree, userInputThree, wordChoices, charList)
+            guessThree = list(userInputThree)
+
+            if checkLetters(guessThree, userInputThree, wordChoices, charList):
+                continue
+            else:
+                runTurn = 0
 
         printBoardFour(guessOne, guessTwo, guessThree)
 
+        if checkForWin(userInputThree, chosenWord):
+            printWin(charList)
+            gameState = 0
+            continue
+
+        runTurn = 1
+
         # ------------------
 
-        userInputFour = input("Enter your 5 letter word guess: ").lower()
+        while runTurn:
 
-        clearTerm()
+            userInputFour = input("Guess Four: Enter your 5 letter word guess: ").lower()
 
-        guessFour = list(userInputFour)
+            clearTerm()
 
-        checkLetters(guessFour, userInputFour, wordChoices, charList)
+            guessFour = list(userInputFour)
+
+            if checkLetters(guessFour, userInputFour, wordChoices, charList):
+                continue
+            else:
+                runTurn = 0
 
         printBoardFive(guessOne, guessTwo, guessThree, guessFour)
 
+        if checkForWin(userInputFour, chosenWord):
+            printWin(charList)
+            gameState = 0
+            continue
+
+        runTurn = 1
+
         # ------------------
 
-        userInputFive = input("Enter your 5 letter word guess: ").lower()
+        while runTurn:
+        
+            userInputFive = input("Guess Five: Enter your 5 letter word guess: ").lower()
 
-        clearTerm()
+            clearTerm()
 
-        guessFive = list(userInputFive)
+            guessFive = list(userInputFive)
 
-        checkLetters(guessFive, userInputFive, wordChoices, charList)
+            if checkLetters(guessFive, userInputFive, wordChoices, charList):
+                continue
+            else:
+                runTurn = 0
 
         printBoardSix(guessOne, guessTwo, guessThree, guessFour, guessFive)
 
+        if checkForWin(userInputFive, chosenWord):
+            printWin(charList)
+            gameState = 0
+            continue
+
+        runTurn = 1
+
         # ------------------
 
-        userInputSix = input("Enter your 5 letter word guess: ").lower()
+        while runTurn:
 
-        clearTerm()
+            userInputSix = input("Guess Six: Enter your 5 letter word guess: ").lower()
 
-        guessSix = list(userInputSix)
+            clearTerm()
 
-        checkLetters(guessSix, userInputSix, wordChoices, charList)
+            guessSix = list(userInputSix)
+
+            if checkLetters(guessSix, userInputSix, wordChoices, charList):
+                continue
+            else:
+                runTurn = 0
 
         printBoardSeven(guessOne, guessTwo, guessThree, guessFour, guessFive, guessSix)
 
+        if checkForWin(userInputSix, chosenWord):
+            printWin(charList)
+            gameState = 0
+            continue
+        else:
+            printLose(charList)
+            gameState = 0
+            continue
+
         # ------------------
 
-
-
-        gameState = 0;
-        break
     elif (startGame == "rules"):
-        print("The code to rules has been entered!")
+        clearTerm()
+        print("The only rules are that there are no rules... and that this page is under construction!")
         gameState = 0;
         break
     elif (startGame == "exit"):
-        print("the code to exit has been entered")
+        clearTerm()
+        print("Thank you for playing!")
         gameState = 0;
         break
     else:
