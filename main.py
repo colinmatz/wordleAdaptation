@@ -50,8 +50,6 @@ while (gameState == 1):
 
     if (startGame == "start"):
         clearTerm()
-        print("\n")
-        printAvailableChars(charsList)
         printBoardOne()
 
         # ------------------
