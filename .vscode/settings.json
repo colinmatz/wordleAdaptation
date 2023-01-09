@@ -1,3 +1,4 @@
 {
-    "cSpell.ignoreWords": []
+    "cSpell.ignoreWords": [],
+    "python.analysis.typeCheckingMode": "basic"
 }
