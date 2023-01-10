@@ -1,4 +1,6 @@
 {
-    "cSpell.ignoreWords": [],
+    "cSpell.ignoreWords": [
+        "Wordle"
+    ],
     "python.analysis.typeCheckingMode": "basic"
 }

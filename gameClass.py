@@ -113,7 +113,7 @@ class Pydle:
             os.system('cls')
 
     def chooseWord(self):
-        f = open("wordList.txt", "r", encoding="utf8")
+        f = open("wordList.txt", "r", encoding = "utf8")
 
         fileContents = f.read()
 
@@ -130,7 +130,6 @@ class Pydle:
 
     def wordReal(self, word, list):
         if word in list:
-            print("This is a valid word!")
             return 1
         else:
             print("This is not a valid word!")
@@ -294,6 +293,7 @@ class Pydle:
             if self.runTurn() == 0:
                 self.setGameState(0)
                 return self.__gameState
+
             # ------------------ Turn 5
 
             if self.runTurn() == 0:
@@ -307,9 +307,6 @@ class Pydle:
                 return self.__gameState
 
             # ------------------
-
-            replay = input("Would you like to play again? ('Y' or 'N'): ")
-            print(replay)
 
 
     
